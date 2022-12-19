@@ -1,0 +1,19 @@
+<div class="container m-4">
+    <table class="table table-striped">
+        <thead class="bg-dark text-white">
+            <th class="p-2">Name</th>
+            <th class="p-2 text-center">Size</th>
+            <th class="p-2 text-center">Type</th>
+            <th class="p-2">Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let filedata of fileList">
+                <td>{{filedata.name}}</td>
+                <td class="text-center">{{filedata.size}} mb</td>
+                <td class="text-center">{{filedata.type}}</td>
+                <td><button class="btn btn-primary me-3" (click)="onView(filedata.content, filedata.type)">View</button>
+                <button class="btn btn-danger" (click)="onDelete(filedata.id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+<div class="d-flex pt-2 pb-2">
+  <input type="search" placeholder="search here" [(ngModel)]="searchRecord">
+</div>
+
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col" class="pointer" (click)="sort('id')">Sr.no</th>
+        <th scope="col" class="pointer" (click)="sort('firstName')">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Salary</th>
+        <th scope="col">mobileNumber</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+      <tr *ngFor="let user of tempUserData | search: searchRecord; let  i=index" cdkDrag>
+        <th scope="row">{{i+1}}</th>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.salary}}</td>
+        <td>{{user.mobileNumber}}</td>
+        <td class="d-flex">
+          <button class="btn btn-secondary" (click)="onEdit(user.id)">Edit</button>
+          <button class="btn btn-danger ms-2" (click)="onDelete(user.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- pagination -->
+<ng-container *ngIf="userData.length > 0">
+  <app-pagination [itemscount]="userData.length" [itemsPerPage]="4" (changePage)="changePage($event)"></app-pagination>
+</ng-container>
+
+<!-- loader -->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" [type]="typeSelected"></ngx-spinner>

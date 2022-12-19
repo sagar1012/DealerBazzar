@@ -1,0 +1,123 @@
+<form class="row justify-content-center" [formGroup]="userForm" (ngSubmit)="addUserForm()">
+    <div class="col-6 border">
+        <div class="form-group p-3">
+            <label for="firstName" class="text-primary fw-bold mb-1">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter FirstName"
+                formControlName="firstName">
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['firstName'].touched || isSubmitted) && userFormControl['firstName'].errors?.['required']">
+                    Firstname is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['firstName'].dirty && userFormControl['firstName'].hasError('minlength')) || (userFormControl['firstName'].dirty && userFormControl['firstName'].hasError('maxlength')) ">
+                    Firstname Length is between 2 to 20 Only.
+                </span>
+            </div>
+        </div>
+
+
+        <div class="form-group p-3">
+            <label for="lastName" class="text-primary fw-bold mb-1">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Enter LastName"
+                formControlName="lastName">
+
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['lastName'].touched || isSubmitted) && userFormControl['lastName'].errors?.['required']">
+                    Lastname is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['lastName'].dirty && userFormControl['lastName'].hasError('minlength')) || (userFormControl['lastName'].dirty && userFormControl['lastName'].hasError('maxlength')) ">
+                    LastName Length is between 2 to 20 Only.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group p-3">
+            <label for="Email" class="text-primary fw-bold mb-1">Email address</label>
+            <input type="email" class="form-control" id="Email" placeholder="Enter email" formControlName="email">
+
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['email'].touched || isSubmitted) && userFormControl['email'].errors?.['required']">
+                    Email is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['email'].dirty && userFormControl['email'].hasError('email')) ">
+                    Email Must have the Alphanumeric and Special character
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group p-3">
+            <label for="Salary" class="text-primary fw-bold mb-1">Salary</label>
+            <input type="text" class="form-control" id="Salary" placeholder="Enter salary" formControlName="salary">
+
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['salary'].touched || isSubmitted) && userFormControl['salary'].errors?.['required']">
+                    salary is required
+                </span> 
+            </div>
+        </div>
+
+        <div class="form-group p-3">
+            <label for="mobile" class="text-primary fw-bold mb-1">Mobile Number</label>
+            <input type="text" class="form-control" id="mobile" placeholder="Enter Mobile Number"
+                formControlName="mobileNumber">
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['mobileNumber'].touched || isSubmitted) && userFormControl['mobileNumber'].errors?.['required']">
+                    Mobile Number is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['mobileNumber'].dirty) && userFormControl['mobileNumber'].errors?.['pattern']">
+                    length must be 10.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group p-3 position-relative">
+            <label for="password" class="text-primary fw-bold mb-1">Password</label>
+            <input [type]="password" class="form-control" id="password" placeholder="Password"
+                formControlName="password">
+            <img src="./assets/eye.svg" class="position-absolute eye-icon" alt="" *ngIf="show" (click)="showPassword()">
+            <img src="./assets/eye-slash.svg" class="position-absolute eye-icon" alt="" *ngIf="!show"
+                (click)="showPassword()">
+
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['password'].touched || isSubmitted) && userFormControl['password'].errors?.['required']">
+                    Password is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['password'].dirty) && userFormControl['password'].errors?.['pattern']">
+                    Must have Alphnumeric and Special character and minimum legth is 8.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group p-3">
+            <label for="confirmPassword" class="text-primary fw-bold mb-1">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" placeholder="confirmPassword"
+                formControlName="confirmPassword">
+
+            <div>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['confirmPassword'].touched || isSubmitted) && userFormControl['confirmPassword'].errors?.['required']">
+                    Confirm Password is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(userFormControl['confirmPassword'].dirty) && userForm.hasError('notSame')">
+                    Password is not matched.
+                </span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end pe-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+        </div>
+    </div>
+</form>
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" [type]="typeSelected"></ngx-spinner>

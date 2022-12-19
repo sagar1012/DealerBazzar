@@ -1,0 +1,35 @@
+.overflow-y-auto {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.sidebar {
+    flex: 0 0 200px;
+    border-right: 1px solid black;
+}
+
+#sideNav {
+    display: none;
+}
+
+#sideNav:checked~.sidebar {
+    transform: translateX(-100%);
+    width: 0;
+    flex-basis: 0;
+    transition: 0.4s all;
+    // opacity: 0;
+    display: none;
+}
+#sideNav:checked~.main-outlet{
+    transition: 0.4s all;
+}
+
+#sideNav:not(checked) {
+    &~.sidebar {
+        transition: 0.4s all;
+    }
+}

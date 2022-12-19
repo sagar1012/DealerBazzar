@@ -1,0 +1,12 @@
+<div class="d-flex h-100">
+
+    <input type="checkbox" id="sideNav">
+    <div class="sidebar">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="overflow-y-auto h-100 p-3 flex-grow-1 main-outlet">
+        <label for="sideNav" class="px-3 fs-6"><i class="ri-menu-line"></i></label>
+        <router-outlet></router-outlet>
+    </div>
+</div>

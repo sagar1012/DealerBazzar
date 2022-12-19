@@ -1,0 +1,50 @@
+<form [formGroup]="loginForm" class="row justify-content-center align-items-center h-100" (ngSubmit)="onSubmit()">
+    <div class="col-6 border">
+
+        <!-- start: Email-Field -->
+        <div class="form-group mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" formControlName="email">
+
+            <span class="text-danger"
+                *ngIf="(loginFormControl['email'].touched || isSubmitted) && loginFormControl['email'].errors?.['required']">
+                Email is required
+            </span>
+            <span class="text-danger"
+                *ngIf="(loginFormControl['email'].dirty && loginFormControl['email'].hasError('email')) ">
+                Email Must have the Alphanumeric and Special character
+            </span>
+        </div>
+        <!-- end: Email-Field -->
+
+        <!-- start: Password-Field -->
+        <div class="form-group mb-3 position-relative">
+            <label for="password" class="form-label">Password</label>
+            <input [type]="password" class="form-control" id="password" formControlName="password">
+
+            <img src="./assets/eye.svg" class="position-absolute eye-icon" alt="" *ngIf="show" (click)="showPassword()">
+            <img src="./assets/eye-slash.svg" class="position-absolute eye-icon" alt="" *ngIf="!show"
+                (click)="showPassword()">
+
+            <div>
+                <span class="text-danger"
+                    *ngIf="(loginFormControl['password'].touched || isSubmitted) && loginFormControl['password'].errors?.['required']">
+                    Password is required
+                </span>
+                <span class="text-danger"
+                    *ngIf="(loginFormControl['password'].dirty) && loginFormControl['password'].errors?.['pattern']">
+                    Must have Alphnumeric and Special character and minimum legth is 8.
+                </span>
+            </div>
+        </div>
+        <!-- start: Password-Field -->
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+    </div>
+</form>
+
+
